@@ -24,10 +24,10 @@ float waiting_time[n];
 waiting_time[0]=0;
 
 float awt=0; //average waiting time
-int cet=0; //cumulative execution time
+int cet=arrival[0]; //cumulative execution time
 
 for(int i=1;i<n;i++){
-        cet=0;
+        cet=arrival[0];
         for(int j=0;j<i;j++){
             cet+=execution[j];
         }
