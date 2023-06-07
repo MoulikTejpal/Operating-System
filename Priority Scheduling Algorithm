@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+int n;
+cout<<"Enter the number of processes: ";
+cin>>n;
+
+int process_no[n];
+int arrival[n];
+int execution[n];
+int priority[n];
+
+for(int i=0;i<n;i++){
+    process_no[i]=i;
+}
+
+cout<<"\nEnter Arrival Time  --> \n";
+for(int i=0;i<n;i++){
+cout<<"Of P["<<i<<"] : ";
+cin>>arrival[i];
+}
+
+cout<<"\nEnter Execution Time  --> \n";
+for(int i=0;i<n;i++){
+cout<<"Of P["<<i<<"] : ";
+cin>>execution[i];
+}
+
+cout<<"\nEnter Priority  --> \n";
+for(int i=0;i<n;i++){
+cout<<"Of P["<<i<<"] : ";
+cin>>priority[i];
+}
+
+//sorting based on priority
+for(int i=0;i<n-1;i++){
+    for(int j=0;j<n-i-1;j++){
+        if(priority[j]<priority[j+1]){
+            swap(priority[j],priority[j+1]);
+            swap(process_no[j],process_no[j+1]);
+            swap(execution[j],execution[j+1]);
+            swap(arrival[j],arrival[j+1]);
+        }
+    }
+}
+
+float waiting_time[n];
+waiting_time[0]=0;
+
+float awt=0; //average waiting time
+int cet=0; //cumulative execution time
+
+for(int i=1;i<n;i++){
+        cet=0;
+        for(int j=0;j<i;j++){
+            cet+=execution[j];
+        }
+waiting_time[i]=cet;
+awt = awt + waiting_time[i];
+}
+
+awt  = awt/n;
+
+cout<<"Note: Execution starts only after ALL Process have Entered\n\tAfter all processes have entered that is taken as 0\n";
+
+cout<<"\nExecuted in Following Order: (based on Higher Priority --> Executed First)\n";
+cout<<"\nPROCESS      PRIORITY    ARRIVAL TIME    EXECUTION TIME      WAITING TIME\n";
+cout<<"---------------------------------------------------------------------------\n";
+
+for(int i=0;i<n;i++){
+cout<<"P["<<process_no[i]<<"]:\t\t"<<priority[i]<<"\t\t"<<arrival[i]<<"\t\t"<<execution[i]<<"\t\t"<<waiting_time[i]<<endl;
+}
+
+cout<<"\nAverage Waiting Time: "<<awt<<endl;
+}
