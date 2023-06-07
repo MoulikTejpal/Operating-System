@@ -62,7 +62,7 @@ awt = awt + waiting_time[i];
 
 awt  = awt/n;
 
-cout<<"Note: Execution starts only after ALL Process have Entered\n\tAfter all processes have entered that is taken as 0\n";
+cout<<"\nNote: Execution starts only after ALL Process have Entered\n      After all processes have entered, that is taken as time 0\n";
 
 cout<<"\nExecuted in Following Order: (based on Higher Priority --> Executed First)\n";
 cout<<"\nPROCESS      PRIORITY    ARRIVAL TIME    EXECUTION TIME      WAITING TIME\n";
